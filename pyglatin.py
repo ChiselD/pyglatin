@@ -7,6 +7,14 @@ yay = "yay"
 # prompt user for text
 original = raw_input("Enter your text: ")
 
+words = original.split()
+
+print words
+print words[1]
+
+#def vowel():
+#def consonant():
+
 # check if string is not empty and is purely alphabetical
 if len(original) > 0 and original.isalpha():
   # lowercase it
