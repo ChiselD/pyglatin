@@ -7,14 +7,15 @@ yay = "yay"
 # prompt user for text
 original = raw_input("Enter your text: ")
 
-# check if string is not empty and is purely alphabetical
-if len(original) > 0 and original.isalpha():
+# check if string is not empty
+if len(original) > 0:
 	# lowercase it
 	text = original.lower()
 	# split original text into array of separate words
-	words = original.split()
+	words = text.split()
 	# check each word: is it vowel-category or consonant-category?
 	for word in words:
+		print word # TESTING CODE ONLY
 		# make variable to hold first letter only
 		first = word[0]
 		# check if first letter is vowel
