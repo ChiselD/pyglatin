@@ -1,6 +1,12 @@
 # THINGS TO FIX
-# 0. add README
 # 1. multiple consonants at start of word
+	# this falls under the 'consonant' function
+	# look at each letter in word, left to right, STARTING WITH SECOND LETTER
+	# stop when you reach the first vowel (counting y as vowel for now)
+	# add all letters before first vowel, as a unit, to variable 'first_chunk'
+	# add remainder of word to variable 'second_chunk'
+	# concatenate second + first + ay
+	# print concatenation
 # 2. non-alphabetical strings
 
 # create separate variable for ending
