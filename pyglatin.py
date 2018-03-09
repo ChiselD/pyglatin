@@ -1,4 +1,7 @@
-# two categories of words: starting with vowels and starting with consonants
+# THINGS TO FIX
+# 0. add README
+# 1. multiple consonants at start of word
+# 2. non-alphabetical strings
 
 # create separate variable for ending
 ay = "ay"
