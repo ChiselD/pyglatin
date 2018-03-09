@@ -1,0 +1,3 @@
+This is an extension of the “Pyg Latin” project from the Codecademy.com introductory Python course. Once I reached that project, I decided to code it entirely on my own and expand it past the basic requirements as far as possible with almost no prior knowledge of the language.
+
+The eventual goal is for the user to be able to enter any string and for it to be converted, if possible, into correct Pig Latin.
