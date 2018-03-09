@@ -1,51 +1,52 @@
 # THINGS TO FIX
-# 1. multiple consonants at start of word
-	# this falls under the 'consonant' function
-	# look at each letter in word, left to right, STARTING WITH SECOND LETTER
-	# stop when you reach the first vowel (counting y as vowel for now)
-	# add all letters before first vowel, as a unit, to variable 'first_chunk'
-	# add remainder of word to variable 'second_chunk'
-	# concatenate second + first + ay
-	# print concatenation
-# 2. non-alphabetical strings
+# 1. multiple consonants at start of word - DONE!
+# 2. printing on separate lines
+# 3. non-alphabetical strings
 
-# create separate variable for ending
+# create separate variables for the two possible endings
 ay = "ay"
 yay = "yay"
 
 # define function to run on words starting with vowels
-def vowel(x):
-	vowel_word = x + yay
+def vowel(word):
+	vowel_word = word + yay
 	print vowel_word
 
 # define function to run on words starting with consonants
-def consonant(y, z):
-	consonant_word = y[1:len(y)] + z + ay
+def consonant(word, first):
+	first_chunk = ""
+	if first == "y":
+		first_chunk = first
+	else:
+		for letter in word:
+			if letter != "a" and letter != "e" and letter != "i" and letter != "o" and letter != "u" and letter != "y":
+				first_chunk += letter
+			else:
+				break
+	consonant_word = word[len(first_chunk):len(word)] + first_chunk + ay
 	print consonant_word
 
-# prompt user for text
-original = raw_input("Enter your text: ")
+def main():
+	# prompt user for text to Pig-Latinize
+	original = raw_input("Enter your text: ")
 
-# check if string is not empty
-if len(original) > 0:
-	# lowercase it
-	text = original.lower()
-	# split original text into array of separate words
-	words = text.split()
-	# check each word: is it vowel-category or consonant-category?
-	for word in words:
-		# make variable to hold first letter only
-		first = word[0]
-		# check if first letter is vowel
-		if first == "a" or first == "e" or first == "i" or first == "o" or first == "u":
-			vowel(word)
-		else:
-			consonant(word, first)
+	# confirm that user-entered string is not empty
+	if len(original) > 0:
+		# lowercase user-entered string for practical purposes
+		text = original.lower()
+		# split original text into array of separate words
+		words = text.split()
+		# check each word: is it vowel-category or consonant-category?
+		for word in words:
+			# make variable to hold first letter only
+			first = word[0]
+			# check if first letter is vowel
+			if first == "a" or first == "e" or first == "i" or first == "o" or first == "u":
+				vowel(word)
+			else:
+				consonant(word, first)
+	else:
+		print 'empty'
 
-	# PL-ized word = all-but-first of original + first of original + 'ay'
-	# new_word = word[1:len(word)] + first + ay
-	# print new_word
-
-else:
-	print 'empty'
+main()
 
