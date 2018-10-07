@@ -1,16 +1,19 @@
 # THINGS TO FIX
 # 1. multiple consonants at start of word - DONE!
-# 2. printing on separate lines
+# 2. printing on separate lines - DONE!
 # 3. non-alphabetical strings
 
 # create separate variables for the two possible endings
 ay = "ay"
 yay = "yay"
 
+# create list to hold words of sentence in order
+sentence = []
+
 # define function to run on words starting with vowels
 def vowel(word):
 	vowel_word = word + yay
-	print vowel_word
+	sentence.append(vowel_word)
 
 # define function to run on words starting with consonants
 def consonant(word, first):
@@ -30,7 +33,7 @@ def consonant(word, first):
 				break
 	# consonant_word = all letters from first vowel to end + all letters before that + ay
 	consonant_word = word[len(first_chunk):len(word)] + first_chunk + ay
-	print consonant_word
+	sentence.append(consonant_word)
 
 def main():
 	# prompt user for text to Pig-Latinize
@@ -52,8 +55,12 @@ def main():
 			# if first letter is consonant, run consonant function
 			else:
 				consonant(word, first)
+
+		# print each word in final 'sentence' list
+		for item in sentence:
+			print item,
+
 	else:
 		print 'empty'
 
 main()
-
