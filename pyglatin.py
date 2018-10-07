@@ -2,6 +2,9 @@
 # 1. multiple consonants at start of word - DONE!
 # 2. printing on separate lines - DONE!
 # 3. non-alphabetical strings
+# 3a. if user includes numbers, return error message saying "only letters & punctuation please"
+# 3b. if user includes punctuation, move it to correct location
+# 4. omitted capitalization
 
 # create separate variables for the two possible endings
 ay = "ay"
@@ -23,10 +26,11 @@ def consonant(word, first):
 	if first == "y":
 		first_chunk = first
 	else:
-		# look at each letter in word to see if it is a vowel
 		for letter in word:
-			# as long as it's not, add it onto the end of the 'first_chunk' variable
-			if letter != "a" and letter != "e" and letter != "i" and letter != "o" and letter != "u" and letter != "y":
+			# look at each letter in word to see if it is a vowel
+			vowels = ['a','e','i','o','u','y']
+			if letter not in vowels:
+				# as long as it's not, add it onto the end of the 'first_chunk' variable
 				first_chunk += letter
 			else:
 				# as soon as you reach the first vowel in the word, break the loop
