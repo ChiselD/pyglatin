@@ -48,36 +48,44 @@ def consonant(word, first):
 	consonant_word = word[len(first_chunk):len(word)] + first_chunk + ay
 	sentence.append(consonant_word)
 
+def check_for_numbers(user_input):
+	# if user-entered string contains digits, refuse it and re-prompt
+	if has_number(user_input) == True:
+		print "Please enter a string that contains only letters and punctuation."
+		main()
+
+def pig_latinize_string(user_input):
+	# lowercase user-entered string for practical purposes
+	text = user_input.lower()
+	# split original text into array of separate words
+	words = text.split()
+	# check each word: is it vowel-category or consonant-category?
+	for word in words:
+		# make variable to hold first letter only
+		first = word[0]
+		# if first letter is vowel, run vowel function
+		if first in vowels and first != 'y':
+			vowel(word)
+		# if first letter is consonant, run consonant function
+		else:
+			consonant(word, first)
+
+	# print each word in final 'sentence' list
+	for item in sentence:
+		print item,
+
 def main():
 	# prompt user for text to Pig-Latinize
 	original = raw_input("Enter your text: ")
 
-	if has_number(original) == True:
-		print "Please enter a string that contains only letters and punctuation."
-		main()
-
 	# confirm that user-entered string is not empty
-	elif len(original) > 0:
-		# lowercase user-entered string for practical purposes
-		text = original.lower()
-		# split original text into array of separate words
-		words = text.split()
-		# check each word: is it vowel-category or consonant-category?
-		for word in words:
-			# make variable to hold first letter only
-			first = word[0]
-			# if first letter is vowel, run vowel function
-			if first in vowels and first != 'y':
-				vowel(word)
-			# if first letter is consonant, run consonant function
-			else:
-				consonant(word, first)
-
-		# print each word in final 'sentence' list
-		for item in sentence:
-			print item,
-
+	if len(original) > 0:
+		# if string contains numbers, refuse it and re-prompt
+		check_for_numbers(original)
+		# otherwise, let's DO this thing
+		pig_latinize_string(original)
 	else:
+		# if user-entered string is empty, throw error and re-prompt
 		print "No input!"
 		main()
 
