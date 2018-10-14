@@ -4,7 +4,7 @@
 # 3. non-alphabetical strings
 # 3a. if user includes numbers, return error - DONE!
 # 3b. if user includes punctuation, move it to correct location - MOSTLY DONE!
-# (still to do: delete extra spaces around punctuation)
+# 3c. delete extra spaces around punctuation - DONE!
 # (note: problem with strings like 'he said his name was "john" - doubtful!')
 # 4. omitted capitalization
 # idea: maybe change pig_latinize_string to pig_latinize_word !!!
@@ -51,7 +51,7 @@ def has_number(input):
 # function to turn the user input into its Pig Latin equivalent
 def pig_latinize_string(input):
 	# create list to hold words of sentence in order
-	sentence = []
+	sentence = ''
 	# lowercase user-entered string for practical purposes
 	text = input.lower()
 	# split original text into array of separate words
@@ -71,29 +71,28 @@ def pig_latinize_string(input):
 		first = word[0]
 		# check for pre-punctuation for this word
 		if prepunc != '':
-			sentence.append(prepunc)
+			sentence += prepunc
 		# if first letter is vowel, run vowel function
 		if first in vowels and first != 'y':
-			sentence.append(vowel(word))
+			sentence += ' ' + vowel(word)
 		# if first letter is consonant, run consonant function
 		else:
-			sentence.append(consonant(word, first))
+			sentence += ' ' + consonant(word, first)
 		# check for post-punctuation for this word
 		if postpunc != '':
-			sentence.append(postpunc)
+			sentence += postpunc
 
 		# set prepunc and postpunc back to blank before next loop
 		prepunc = ''
 		postpunc = ''
 
 	# print each word in final 'sentence' list
-	for item in sentence:
-		print item,
+	print sentence
 
 # function that runs all the other functions (ALL HAIL MASTER FUNCTION)
 def main():
 	# reset sentence list to empty
-	sentence = []
+	sentence = ''
 
 	# prompt user for text to Pig-Latinize
 	original = raw_input("Enter your text: ")
