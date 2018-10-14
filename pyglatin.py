@@ -10,16 +10,12 @@
 # idea: maybe change pig_latinize_string to pig_latinize_word !!!
 # this could make it easier to interact with prepunc/postpunc?
 
-# separate variables for the two possible endings
-ay = 'ay'
-yay = 'yay'
-
 # reference list that tracks all vowels
 vowels = ['a','e','i','o','u','y']
 
 # function to run on words starting with vowels
 def vowel(word):
-	return word + yay
+	return word + "yay"
 
 # function to run on words starting with consonants
 def consonant(word, first):
@@ -40,7 +36,7 @@ def consonant(word, first):
 				# as soon as you reach the first vowel in the word, break the loop
 				break
 	# consonant_word = all letters from first vowel to end + all letters before that + ay
-	consonant_word = word[len(first_chunk):len(word)] + first_chunk + ay
+	consonant_word = word[len(first_chunk):len(word)] + first_chunk + "ay"
 	return consonant_word
 
 # function to check if user input contains any digits
