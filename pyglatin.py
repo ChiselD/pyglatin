@@ -5,10 +5,9 @@
 # 3a. if user includes numbers, return error - DONE!
 # 3b. if user includes punctuation, move it to correct location - MOSTLY DONE!
 # 3c. delete extra spaces around punctuation - DONE!
-# (note: problem with strings like 'he said his name was "john" - doubtful!')
+# still problem with: "Well, what have we here?" he chuckled.
 # 4. omitted capitalization
-# idea: maybe change pig_latinize_string to pig_latinize_word !!!
-# this could make it easier to interact with prepunc/postpunc?
+# idea: add pig_latinize_word function that is run inside pig_latinize_string!!!
 
 # reference list that tracks all vowels
 vowels = ['a','e','i','o','u','y']
@@ -44,6 +43,13 @@ def has_number(input):
 	# returns True if the string contains a digit
 	return any(char.isdigit() for char in input)
 
+# function that returns False if a string contains no alphabetical chars
+def check_non_alph(input):
+  for char in input:
+    if char.isalpha():
+      return True
+  return False
+
 # function to turn the user input into its Pig Latin equivalent
 def pig_latinize_string(input):
 	# create list to hold words of sentence in order
@@ -57,30 +63,38 @@ def pig_latinize_string(input):
 	postpunc = ''
 	# insert comment here
 	for word in words: # TO DO: turn following if-blocks into separate function
-		while list(word)[0].isalpha() == False:
-			prepunc = list(word).pop(0)
-			word = word[1:]
-		while list(word)[-1].isalpha() == False:
-			postpunc = list(word).pop(-1)
-			word = word[:-1]
-		# make variable to hold first letter only
-		first = word[0]
-		# check for pre-punctuation for this word
-		if prepunc != '':
-			sentence += prepunc
-		# if first letter is vowel, run vowel function
-		if first in vowels and first != 'y':
-			sentence += ' ' + vowel(word)
-		# if first letter is consonant, run consonant function
+		if not check_non_alph(word):
+			sentence += word + ' '
 		else:
-			sentence += ' ' + consonant(word, first)
-		# check for post-punctuation for this word
-		if postpunc != '':
-			sentence += postpunc
+			while list(word)[0].isalpha() == False:
+				prepunc = list(word).pop(0)
+				word = word[1:]
+			while list(word)[-1].isalpha() == False:
+				postpunc = list(word).pop(-1)
+				word = word[:-1]
+			# make variable to hold first letter only
+			first = word[0]
+			# make variable to piece together this word
+			this_word = ''
+			# check for pre-punctuation for this word
+			if prepunc != '':
+				this_word += prepunc
+			# if first letter is vowel, run vowel function
+			if first in vowels and first != 'y':
+				this_word += vowel(word)
+			# if first letter is consonant, run consonant function
+			else:
+				this_word += consonant(word, first)
+			# check for post-punctuation for this word
+			if postpunc != '':
+				this_word += postpunc
 
-		# set prepunc and postpunc back to blank before next loop
-		prepunc = ''
-		postpunc = ''
+			# add finished word to sentence
+			sentence += this_word + ' '
+
+			# set prepunc and postpunc back to blank before next loop
+			prepunc = ''
+			postpunc = ''
 
 	# print each word in final 'sentence' list
 	print sentence
